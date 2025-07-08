@@ -1,9 +1,8 @@
-// src/Components/Navbar.js
 import React from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-function NavigationBar() {
+const NavigationBar: React.FC = () => {
   return (
     <Navbar bg="dark" variant="dark" expand="lg">
       <Navbar.Brand as={Link} to="/">CRUD App</Navbar.Brand>
@@ -16,6 +15,6 @@ function NavigationBar() {
       </Navbar.Collapse>
     </Navbar>
   );
-}
+};
 
 export default NavigationBar;

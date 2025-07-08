@@ -1,8 +1,15 @@
 // src/pages/HomePage.js
 import React from 'react';
 import ItemList from '../Components/ItemList';
+import { Item } from '../types';
 
-function HomePage({ items, onEdit, onDelete }) {
+interface Props {
+  items: Item[];
+  onEdit: (item: Item) => void;
+  onDelete: (id: string) => void;
+}
+
+function HomePage({ items, onEdit, onDelete }: Props) {
   return (
     <div className="container mt-4">
       <h2>All Items</h2>

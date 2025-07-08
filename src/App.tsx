@@ -6,27 +6,28 @@ import AddPage from './Pages/AddPage';
 import EditPage from './Pages/EditPage';
 import NotFound from './Pages/NotFound';
 import { getItems, createItem, updateItem, deleteItem } from './api';
+import { Item } from './types';
 
 function App() {
-  const [items, setItems] = useState([]);
-  const [itemToEdit, setItemToEdit] = useState(null);
+  const [items, setItems] = useState<Item[]>([]);
+  const [itemToEdit, setItemToEdit] = useState<Item | null>(null);
 
   useEffect(() => {
     getItems().then(res => setItems(res.data));
   }, []);
 
-  const addItem = (item) => {
+  const addItem = (item: Item): void => {
     createItem(item).then(res => setItems([...items, res.data]));
   };
 
-  const updateItemHandler = (item) => {
+  const updateItemHandler = (item: Item): void => {
     updateItem(item.id, item).then(res => {
       const updatedList = items.map(i => i.id === res.data.id ? res.data : i);
       setItems(updatedList);
     });
   };
 
-  const deleteItemHandler = (id) => {
+  const deleteItemHandler = (id: string): void => {
     deleteItem(id).then(() => {
       setItems(items.filter(item => item.id !== id));
     });
